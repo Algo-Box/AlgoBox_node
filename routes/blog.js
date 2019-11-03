@@ -10,7 +10,7 @@ router.get('/', (req, res, next) => {
   }).catch(next);
 });
 
-router.post('/', (req, res, next) => {
+router.post('/newBlog', (req, res, next) => {
   newBlog = new Blog({
     author: req.body.author,
     tags: req.body.tags,
