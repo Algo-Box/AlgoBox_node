@@ -17,6 +17,7 @@ mongoose.connect(uri);
 
 // Middleware
 app.use(bodyParser.json());
+app.use('/blog', require('./routes/blog'));
 
 app.get('/', (req, res) => {
   res.render('index');
