@@ -16,7 +16,8 @@ let uri = require('./env')['mongouri'];
 mongoose.connect(uri);
 
 // Middleware
-app.use(bodyParser.json());
+app.use(bodyParser.json()); // for JSON
+app.use(bodyParser.urlencoded({ extended: true })); // For forms through post request
 app.use('/blog', require('./routes/blog'));
 
 app.get('/', (req, res) => {
@@ -32,7 +33,7 @@ app.use((err, req, res, next) => {
 // Error Landing
 app.get('*', (req, res) => {
   res.status(404);
-  res.send({error: 'Where u heading buddy'});
+  res.render('404');
 });
 
 app.listen(3000 || process.env.PORT, () => {

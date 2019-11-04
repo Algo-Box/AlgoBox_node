@@ -1,18 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>This is a sample First page blog</title>
-</head>
-<body>
-  <h1>Sample Blog </h1>
-  <ul>
-  <% for(let i = 0; i < Math.min(5, blogs.length); i++) {%>
-    <li><%- blogs[i].body %></li>  
-    <br />
-  <%} %>
-  </ul> 
-</body>
-</html>
+<%- include('partials/index') %>
+<style>
+	body {
+		font-family: "Roboto", sans-serif;
+		font-size: 18px;
+		background-color: #fdfdfd;
+	}
+	.head_text{
+		color: white;
+	}
+	.card{
+		box-shadow: 0 16px 48px #E3E7EB;
+	}
+</style>
+
+<%- include('partials/header') %>
+ 
+<div class="container">
+	<div class="row">
+	<!-- Blog Entries Column -->
+		<div class="col-md-8 mt-3 left">
+        <% if (typeof posts !== 'undefined') {%>
+          <% for (let i = 0; i < posts.length; ++i) { %>
+            <div class="card mb-4" style="width: 100%">
+              <div class="card-body">
+								
+								<h2 class="card-title"><a href="/blog/<%-posts[i].slug%>"> <%- posts[i].title %></a></h2>
+
+								<p class="card-text text-muted h6"><%- posts[i].author %> <%- posts[i].created %> </p>
+
+								<p class="card-text"><%- posts[i].body.slice(0, Math.min(500, posts[i].body.length - 1)) %> <%if (posts[i].body.length > 500) {%> ... <%}%></p>
+
+								<% if(posts[i].body.length > 500) {%>
+									<a href="/blog/<%- posts[i].slug %>" class="btn btn-primary">Read More &rarr;</a>
+								<%} else {%>
+									<a href="/blog/<%- posts[i].slug %>" class="btn btn-primary">View as Single Blog &rarr;</a>		
+								<%} %>
+
+							</div>
+            </div>
+            <%} %>
+          <%} %>
+		</div>
+		<%- include('partials/sidebar') %>
+	</div>
+</div>
+<%- include('partials/footer') %>
