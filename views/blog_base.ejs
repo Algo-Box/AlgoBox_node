@@ -4,6 +4,7 @@
 		font-family: "Roboto", sans-serif;
 		font-size: 18px;
 		background-color: #fdfdfd;
+		background-attachment: fixed;
 	}
 	.head_text{
 		color: white;
@@ -26,9 +27,9 @@
 								
 								<h2 class="card-title"><a href="/blog/<%-posts[i].slug%>"> <%- posts[i].title %></a></h2>
 
-								<p class="card-text text-muted h6"><%- posts[i].author %> <%- posts[i].created %> </p>
-
-								<p class="card-text"><%- posts[i].body.slice(0, Math.min(500, posts[i].body.length - 1)) %> <%if (posts[i].body.length > 500) {%> ... <%}%></p>
+								<p class="card-text text-muted h6"><strong>Post by: </strong><a href="/users/<%- posts[i].author %>"><%- posts[i].author %></a> </p> 
+								<p class="card-text text-muted h6"><strong>Created on: </strong><%- posts[i].created %> </p>
+								<p class="card-text"><%- posts[i].body.slice(0, Math.min(500, posts[i].body.length - 1)) %> </pre></code> <%if (posts[i].body.length > 500) {%> ... <%}%></p>
 
 								<% if(posts[i].body.length > 500) {%>
 									<a href="/blog/<%- posts[i].slug %>" class="btn btn-primary">Read More &rarr;</a>

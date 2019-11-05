@@ -2,8 +2,15 @@ const express = require('express');
 const router = express.Router();
 const Blog = require('../models/Blog');
 
+let propComparator = (prop) => {
+  return (a, b) => {
+    return b[prop] - a[prop];
+  };
+};
+
 router.get('/', (req, res, next) => {
   Blog.find({}).then((blogs) => {
+    blogs.sort(propComparator('created'));
     res.render('blog_base', {
       posts: blogs
     });
@@ -18,6 +25,9 @@ router.post('/', (req, res, next) => {
     title: req.body.title,
     slug: req.body.slug
   });
+
+  // To not treat '<' (less than) as some html tag
+  newBlog.body = newBlog.body.replace(/</g,"< ");
 
   // Convert to a fromatted text format from a simple paragraph format
   newBlog.body = newBlog.body.replace(/(\r\n|\n\r|\r|\n)/g,"<br />");
@@ -49,7 +59,7 @@ router.post('/create_blog', (req, res, next) => {
   // console.log(newBlog);
 
   newBlog.save().then(() => {
-    res.send(newBlog);
+    res.redirect('/blog/');
   }).catch(next);
 });
 

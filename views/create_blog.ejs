@@ -1,35 +1,26 @@
 <%- include('partials/index') %>
 <%- include('partials/header') %>
 
-<div class = "container">
+<div class = "container form_box">
     <br>
-    <center><h2>Add article!!</h2></center>
+    <center><h2 class="form_title">Add article!!</h2></center>
     <form action = "/blog/create_blog/" method = "POST" style="align-self: center" id = "BlogForm">
-        <label>Title</label>
-            <br>
-            <input type="text" name="title" placeholder="Blog Name">
-            <br>
-            <br>
-        <label>Author</label>
-            <br>
-            <input type="text" name="author" placeholder="Blog Author">
-            <br>
-            <br>
-        <label>Slug</label>
-            <br>
-            <input type="text" name="slug" placeholder="Blog Slug">
-            <br>
-            <br>
-        <label>Tags</label>
-            <br>
-            <input type="text" name="tags" placeholder="Enter Blog tags">
-            <br>
-            <br>
-        <label>Content</label>
-          <br>
-          <input size="100" type="text" name="body" placeholder="Enter Blog Data">
-          <br>
-          <br>
-        <input type = "submit" value="Create!!">
-    </form>
+        <div class="title">
+            <label>Title</label>
+                <input type="text" name="title" class="space" placeholder="Blog Name">
+            <label>Author</label>
+                <input type="text" name="author" placeholder="Blog Author">
+        </div>
+        <div class="slug">
+            <label>Slug</label>
+                <input type="text" name="slug" class="space" placeholder="Blog Slug">
+            <label style="margin-right:25px;">Tags</label>
+                <input type="text" name="tags" placeholder="Enter Blog tags">
+        </div>
+        <label class="content">Content</label>
+          <!-- <input size="100" style="font-size:20px;padding:20px" type="text" name="body" placeholder="Enter Blog Data"> -->
+            <textarea rows="7" cols="70" name="body" id= "textbox" placeholder="Enter Blog Content"></textarea>
+        <center><input type = "submit" value="Create!!"></center>
+        </form>
 </div>
+<%- include('partials/footer') %>;

@@ -13,7 +13,9 @@ mongoose.set('useNewUrlParser', true);
 
 // Database connection
 let uri = require('./env')['mongouri'];
-mongoose.connect(uri);
+mongoose.connect(uri)
+.then(() => console.log('Databse Connected'))
+.catch((err) => console.log(err));
 
 // Middleware
 app.use(bodyParser.json()); // for JSON

@@ -8,12 +8,17 @@
 			rel="stylesheet">
 		<meta name="google" content="notranslate" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" 
+		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
 		<link
 			rel="stylesheet"
 			href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 			integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 			crossorigin="anonymous"
 		/>
+		<link rel="stylesheet" href="/css/style.css">
 	</head>
 
 	<body>
@@ -42,6 +47,7 @@
 			{
 					height:100px;
 					width: 400px;
+					padding: 10px;
 					font-size:14pt;
 			}
 
@@ -65,7 +71,10 @@
 				</button>
 
 				<div class="collapse navbar-collapse" id="navbarResponsive">
-					<ul class="navbar-nav ml-auto">
+					<ul class="navbar-nav ml-auto"></li>
+							<li class="nav-item text-black">
+							<a class="nav-link text-black font-weight-bold" href="/blog/create_blog">Add Article</a>
+						</li>
 						<li class="nav-item text-black">
 							<a class="nav-link text-black font-weight-bold" href="#">Community</a>
 						</li>
@@ -74,12 +83,6 @@
 						</li>
 						<li class="nav-item text-black">
 							<a class="nav-link text-black font-weight-bold" href="/Claendar">Calendar</a>
-						</li>
-            <% if (typeof user !== 'undefined') {%>
-              <li class="nav-item text-black">
-							<a class="nav-link text-black font-weight-bold" href="/CreateArticle">Add Article</a>
-						</li>
-						<%} %>
 						<% if (typeof user !== 'undefined') {%>
 						<li class="nav-item text-black">
 							<a class="nav-link text-black font-weight-bold" href="/Logout">Logout</a>
