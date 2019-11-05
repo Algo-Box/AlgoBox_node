@@ -85,11 +85,14 @@
 							<a class="nav-link text-black font-weight-bold" href="/Claendar">Calendar</a>
 						<% if (typeof user !== 'undefined') {%>
 						<li class="nav-item text-black">
-							<a class="nav-link text-black font-weight-bold" href="/Logout">Logout</a>
+							<a class="nav-link text-black font-weight-bold" href="/dashboard">Dashboard</a>
+						</li>
+						<li class="nav-item text-black">
+							<a class="nav-link text-black font-weight-bold" href="/auth/logout">Logout</a>
             </li>
             <%} else { %>
 						<li class="nav-item text-black">
-							<a class="nav-link text-black font-weight-bold" href="/Login">Login</a>
+							<a class="nav-link text-black font-weight-bold" href="/auth/login">Login</a>
             </li>
             <%} %>
 					</ul>

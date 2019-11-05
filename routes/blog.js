@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Blog = require('../models/Blog');
 
+
 let propComparator = (prop) => {
   return (a, b) => {
     return b[prop] - a[prop];
@@ -11,34 +12,27 @@ let propComparator = (prop) => {
 router.get('/', (req, res, next) => {
   Blog.find({}).then((blogs) => {
     blogs.sort(propComparator('created'));
-    res.render('blog_base', {
-      posts: blogs
-    });
-  }).catch(next);
-});
-
-router.post('/', (req, res, next) => {
-  newBlog = new Blog({
-    author: req.body.author,
-    tags: req.body.tags,
-    body: req.body.body,
-    title: req.body.title,
-    slug: req.body.slug
-  });
-
-  // To not treat '<' (less than) as some html tag
-  newBlog.body = newBlog.body.replace(/</g,"< ");
-
-  // Convert to a fromatted text format from a simple paragraph format
-  newBlog.body = newBlog.body.replace(/(\r\n|\n\r|\r|\n)/g,"<br />");
-  
-  newBlog.save().then(() => {
-    res.send(newBlog);
+    if(req.isAuthenticated()) {
+      res.render('blog_base', {
+        user: req.user,
+        posts: blogs
+      });
+    } else {
+      res.render('blog_base', {
+        posts: blogs
+      });
+    }
   }).catch(next);
 });
 
 router.get('/create_blog', (req, res, next) => {
-  res.render('create_blog');
+  if(req.isAuthenticated()) {
+    res.render('create_blog', {
+      user: req.user.username
+    });  
+  } else {
+    res.render('please_login');
+  }
 });
 
 router.post('/create_blog', (req, res, next) => {
@@ -47,7 +41,7 @@ router.post('/create_blog', (req, res, next) => {
     ar[i] = ar[i].trim();
   }
   newBlog = new Blog({
-    author: req.body.author,
+    author: req.user.username,
     tags: ar,
     body: req.body.body,
     title: req.body.title,
