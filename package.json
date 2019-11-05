@@ -4,8 +4,8 @@
   "description": "AlgoBox",
   "main": "app.js",
   "scripts": {
-    "test": "mocha",
-    "start": "nodemon app.js"
+    "test": "nodemon app.js",
+    "start": "node app.js"
   },
   "keywords": [
     "AlgoBox"
