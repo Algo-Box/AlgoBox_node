@@ -70,6 +70,6 @@ app.get('*', (req, res) => {
   res.render('404');
 });
 
-app.listen(3000 || process.env.PORT, () => {
+app.listen(process.env.PORT, () => {
   console.log('Connection Started');
 });
