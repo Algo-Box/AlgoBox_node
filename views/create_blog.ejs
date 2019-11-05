@@ -7,15 +7,15 @@
     <form action = "/blog/create_blog/" method = "POST" style="align-self: center" id = "BlogForm">
         <div class="title">
             <label>Title</label>
-            <input type="text" name="title" class="space" placeholder="Blog Name">
+            <input type="text" name="title" placeholder="Blog Name" required>
             <!-- <label>Author</label>
             <input type="text" name="author" value="<%- user %>"> -->
         </div>
         <div class="slug">
             <label>Slug</label>
-            <input type="text" name="slug" class="space" placeholder="Blog Slug">
+            <input type="text" name="slug" class="space" placeholder="Blog Slug" required>
             <label style="margin-right:25px;">Tags</label>
-            <input type="text" name="tags" placeholder="Enter Blog tags">
+            <input type="text" name="tags" placeholder="Enter Blog tags" required>
         </div>
         <label class="content">Content</label>
           <!-- <input size="100" style="font-size:20px;padding:20px" type="text" name="body" placeholder="Enter Blog Data"> -->

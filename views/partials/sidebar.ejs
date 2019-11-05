@@ -21,12 +21,12 @@
     <div class="card my-4 my_card">
       <h5 class="card-header">Participate!</h5>
       <div class="card-body">
-        <p class="card-text"> All programming, right here!</p>
+        <p class="card-text"> All programming contests, right here!</p>
         <nav class="contest-list">
-          <% if (typeof contest !== 'undefined') {%>
+          <% if (typeof contestList !== 'undefined') {%>
           <ul>
-            <% for (let contest in contestList) {%>
-            <a href="<%- contest.href %>"><li> <%- contest.event %> </li></a> 
+            <% for (let i = 0; i < contestList.length; ++i) {%>
+            <a href="<%- contestList[i].href %>"><li> <%- contestList[i].event %> </li></a> 
             <%} %>
           <%} %>
           </ul>

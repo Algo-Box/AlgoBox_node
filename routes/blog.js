@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Blog = require('../models/Blog');
-
+const Contest = require('../models/Contests');
 
 let propComparator = (prop) => {
   return (a, b) => {
@@ -12,16 +12,20 @@ let propComparator = (prop) => {
 router.get('/', (req, res, next) => {
   Blog.find({}).then((blogs) => {
     blogs.sort(propComparator('created'));
-    if(req.isAuthenticated()) {
-      res.render('blog_base', {
-        user: req.user,
-        posts: blogs
-      });
-    } else {
-      res.render('blog_base', {
-        posts: blogs
-      });
-    }
+    Contest.find({}).then( (contests) => {
+      if(req.isAuthenticated()) {
+        res.render('blog_base', {
+          user: req.user,
+          posts: blogs,
+          contestList: contests
+        });
+      } else {
+        res.render('blog_base', {
+          posts: blogs,
+          contestList: contests
+        });
+      }
+    });
   }).catch(next);
 });
 
@@ -33,6 +37,17 @@ router.get('/create_blog', (req, res, next) => {
   } else {
     res.render('please_login');
   }
+});
+
+router.post("/Contest", (req, res, next) => {
+  let newContest = new Contest({
+    href: req.body.href,
+    event: req.body.event
+  });
+  newContest.save().then( (Contest) => {
+    console.log(Contest);
+    res.send("COOL");
+  }).catch(next);
 });
 
 router.post('/create_blog', (req, res, next) => {
@@ -63,9 +78,16 @@ router.get('/:slug', (req, res, next) => {
     if(blog.length === 0) {
       next();
     } else {
-      res.render('single_blog', {
-        post: blog[0]
-      });
+      if(req.isAuthenticated()) {
+        res.render('single_blog', {
+          user: req.user,
+          post: blog[0]
+        });
+      } else {
+        res.render('single_blog', {
+          post: blog[0]
+        });
+      }
     }
   }).catch(next);
 });

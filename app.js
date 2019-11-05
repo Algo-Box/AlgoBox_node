@@ -53,6 +53,7 @@ app.use( (req, res, next) => {
 app.use('/blog', require('./routes/blog')); // Handler for blog routes
 app.use('/auth', require('./routes/auth')); // Handler for authentication routes
 app.use('/dashboard', require('./routes/dashboard')); // Handler for dashboard routes
+app.use('/submissions', require('./routes/submissions')); // Handler for submission routes
 
 app.get('/', (req, res) => {
   res.redirect('/blog');
@@ -70,6 +71,6 @@ app.get('*', (req, res) => {
   res.render('404');
 });
 
-app.listen(process.env.PORT, () => {
+app.listen(3000 || process.env.PORT, () => {
   console.log('Connection Started');
 });

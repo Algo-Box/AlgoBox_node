@@ -71,13 +71,22 @@
 				</button>
 
 				<div class="collapse navbar-collapse" id="navbarResponsive">
-					<ul class="navbar-nav ml-auto"></li>
+					<% if (typeof user !== 'undefined') {%>
+						<ul class="navbar-nav ml-auto"><li>
+							<li class="nav-item text-black">
+							<a class="nav-link text-black font-weight-bold" href="/submissions">My Submissions</a>
+						</li>
+						<li>
 							<li class="nav-item text-black">
 							<a class="nav-link text-black font-weight-bold" href="/blog/create_blog">Add Article</a>
 						</li>
-						<li class="nav-item text-black">
-							<a class="nav-link text-black font-weight-bold" href="#">Community</a>
-						</li>
+						<%} else {%>
+							<ul class="navbar-nav ml-auto">
+							<li>
+								<li class="nav-item text-black">
+								<a class="nav-link text-black font-weight-bold" href="/blog/create_blog">Add Article</a>
+							</li>
+						<%}%>
 						<li class="nav-item text-black">
 							<a class="nav-link text-black font-weight-bold" href="#">Teams</a>
 						</li>
@@ -93,6 +102,9 @@
             <%} else { %>
 						<li class="nav-item text-black">
 							<a class="nav-link text-black font-weight-bold" href="/auth/login">Login</a>
+						</li>
+						<li class="nav-item text-black">
+							<a class="nav-link text-black font-weight-bold" href="/auth/signup">Signup</a>
             </li>
             <%} %>
 					</ul>

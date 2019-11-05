@@ -1,0 +1,28 @@
+<%- include('partials/index') %>
+
+<div class = "container form_box">
+  <br>
+  <center><h2 class="form_title">User Details</h2></center>
+  <form action = "/dashboard/" method = "POST" style="align-self: center" id = "BlogForm">
+      <div class="title">
+          <label style="margin-right:77px;">Name</label>
+          <input type="text" name="name" value="<%- user.name %>" required>
+          <!-- <label>Author</label>
+          <input type="text" name="author" value="<%- user %>"> -->
+      </div>
+      <div>
+        <label style="margin-right:77px;">Email</label>
+        <input type="text" name="email" value="<%- user.email %>" required>
+      </div>
+      <div>
+          <label style="margin-right:25px;">codeforces</label>
+          <input type="text" name="codeforces" class="space" value="<%- user.codeforces %>" required>
+      </div>
+      <div>
+        <label style="margin-right:40px;">codechef</label>
+        <input type="text" name="codehef" value="<%- user.codechef %>" required>
+      </div>
+      <center><input type = "submit" value="Update!!"></center>
+      </form>
+</div>
+<%- include('partials/footer') %>;
